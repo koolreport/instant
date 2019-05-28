@@ -12,4 +12,12 @@ class Widget
         ));
         $tempReport->render();
     }
+    static function html($class,$params)
+    {
+        $tempReport = new TempReport(array(
+            "class"=>$class,
+            "params"=>$params,
+        ));
+        return $tempReport->render(true);        
+    }
 }
