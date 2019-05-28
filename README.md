@@ -130,6 +130,10 @@ The third parameter of `create` function is optional settings for report. There 
 `Exporter` helps you to ulilize the `Export` package (if you have) to export any HTML or PHP code file to PDF and other formats.
 
 ```
+<?php
+require_once "koolreport/autoload.php";
+use \koolreport\instant\Exporter;
+
 Exporter::export("/full/path/to/your/file.php")
 ->pdf(array(
     "format"=>"A4",
@@ -148,6 +152,68 @@ Exporter::export("/full/path/to/your/file.php")
 ))
 ->saveAs("myfile.pdf");
 ```
+
+## SinglePage
+
+As you may know, to start a report, we normally need 3 files: a controller class file(ex.`MyReport.php`), a view file (ex. `MyReport.view.php`) and a initiation file (`index.php`). The `SinglePage` allows us to create report in just one file, bundling all the controller, view and initiation file into one. Please view below example:
+
+```
+<?php
+//Index.php
+require_once "../../../koolreport/autoload.php";
+
+use \koolreport\querybuilder\DB;
+use \koolreport\widgets\koolphp\Table;
+
+class MyReport extends \koolreport\KoolReport
+{
+    use \koolreport\instant\SinglePage;
+    use \koolreport\clients\Bootstrap;
+    function settings()
+    {
+        return array(
+            "dataSources"=>array(
+                "automaker"=>array(
+                    "connectionString"=>"mysql:host=localhost;dbname=automaker",
+                    "username"=>"root",
+                    "password"=>"",
+                    "charset"=>"utf8"
+                ),
+            ),
+        );
+    }
+
+    function setup()
+    {
+        $this->src('automaker')->query(
+            DB::table("customers")->select("customerNumber","customerName")
+        )
+        ->pipe($this->dataStore("mydata"));
+    }
+}
+
+$report = new MyReport;
+$report->start();
+?>
+
+<html>
+    <head>
+        <title>Test</title>
+    </head>
+    <body>
+        <h1>Testing</h1>
+        <?php
+        Table::create(array(
+            "dataSource"=>$report->dataStore('mydata')
+        ));
+        ?>
+    </body>
+</html>
+
+<?php $report->end(); ?>
+```
+
+As you may see from above example, we only have 1 file `index.php` containing controller classes `MyReport` and the view inside the `start()` and `end()` methods of report. We declare `use \koolreport\instant\SinglePage;` inside `MyReport` to provide two important methods above.
 
 
 ## Support
