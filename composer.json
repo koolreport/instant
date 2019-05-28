@@ -1,0 +1,11 @@
+{
+    "name": "koolreport/instant",
+    "version":"1.0.0",
+    "description": "Allow rendering widget instantly",
+    "keywords": ["PHP","Reporting Tools","Data Report","Instant Report"],
+    "homepage": "https://www.koolreport.com",
+    "type": "library",
+    "license": "https://www.koolphp.net/license-agreement",
+    "require": {
+    }
+}
