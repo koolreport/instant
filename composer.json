@@ -1,6 +1,6 @@
 {
     "name": "koolreport/instant",
-    "version":"2.5.0",
+    "version":"3.0.0",
     "description": "Allow rendering widget instantly",
     "keywords": ["PHP","Reporting Tools","Data Report","Instant Report"],
     "homepage": "https://www.koolreport.com",

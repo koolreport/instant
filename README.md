@@ -105,7 +105,15 @@ As you see, you do not need to setup the whole KoolReport class and the view in 
 </html>
 ```
 
-## Report Settings
+## Assets Folder
+
+### Automatically create assets folder
+
+By default, Instant package will create `koolreport_assets` folder automatically to hold the resources of widgets. This will assure that all widgets work seamlessly.
+
+### Manually create assets folder
+
+If you want to organize all koolreport widget's resources into a pre-created assets folder of your own, you may do so. For example, you have `assets` folder created, you can do like below:
 
 ```
 <?php
@@ -115,15 +123,29 @@ Widget::create(Table::class,array(
         array("name"=>"Karl","age"=>32),        
     )
 ),array(
-    "assets"=>array(
-        "path"=>"../../assets"
-        "url"=>"/assets",
-    )
-)
+    "path"=>"../../assets"
+    "url"=>"/assets",
+));
 ?>
 ```
 
-The third parameter of `create` function is optional settings for report. There you can set the custom `assets` folder like above. This `assets` settings is necessary if browser can not access to the folder containing resources of Widget. By specifying the `path` and `url`, we let KoolReport know where to put Widget's resources and how to access those resources.
+The third parameter of `create` function is optional settings for assets folder. This `assets` settings is necessary if browser can not access to the folder containing resources of Widget. By specifying the `path` and `url`, we let KoolReport know where to put Widget's resources and how to access those resources.
+
+### Turn off this feature
+
+If you put KoolReport library in folder that can be accessed by browser, there will not be need for create `assets` folder. So you may tell instant package not to create any `assets` folder. Just input `false` value into the third parameter like below
+
+```
+<?php
+Widget::create(Table::class,array(
+    "dataSource"=>array(
+        array("name"=>"Peter","age"=>35),
+        array("name"=>"Karl","age"=>32),        
+    )
+),false);
+?>
+```
+
 
 ## Exporter
 

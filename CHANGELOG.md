@@ -1,3 +1,10 @@
+# Version 3.0.0
+    1. Instant Widget is able to create assets folder automatically without any settings. The automatic assets feature can be turned off or set manually based on preference.
+    2. SinglePage will also create assets folder automatically if there is no manually settings for assets folder.
+
+# Version 2.5.1
+    1. Fix error of resource not loading using SinglePage 
+
 # Version 2.5.0
     1. Adding SinglePage trait to allow report running on one page
 
