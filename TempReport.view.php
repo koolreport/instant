@@ -1,5 +1,5 @@
 <?php
-$class = $this->params["class"];
-$params = $this->params["params"];
-$class::create($params);
+$widgetClass = $this->params["@widgetClass"];
+$widgetParams = $this->params["@widgetParams"];
+$widgetClass::create($widgetParams);
 ?>

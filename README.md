@@ -2,6 +2,8 @@
 
 Sometimes, we need to show some tables or charts in our page but setting up the whole KoolReport, despite of ease, causes trouble and is not convenient. The `Instant` package allows us to create report or widget instantly everywhere without setting up a full report.
 
+Beside `Instant` package can help you to export any file whether it is `html` or `php` to PDF and other formats.
+
 # Installation
 
 1. Download and unzip the zipped file
@@ -36,7 +38,7 @@ Below are example of how to create Table on your PHP page
     <body>
     <?php
     Widget::create(Table::class,array(
-        "data"=>array(
+        "dataSource"=>array(
             array("name"=>"Peter","age"=>35),
             array("name"=>"Karl","age"=>32),
         )
@@ -64,7 +66,7 @@ As you see, you do not need to setup the whole KoolReport class and the view in 
     <body>
     <?php
     Widget::create(BarChart::class,array(
-        "data"=>array(
+        "dataSource"=>array(
             array("name"=>"Peter","age"=>35),
             array("name"=>"Karl","age"=>32),
         )
@@ -90,7 +92,7 @@ As you see, you do not need to setup the whole KoolReport class and the view in 
     <body>
     <?php
     Widget::create(PieChart::class,array(
-        "data"=>array(
+        "dataSource"=>array(
             array("browser"=>"Chrome","usage"=>44.5),
             array("browser"=>"Safari","usage"=>25.4),
             array("browser"=>"Internet Explorer","usage"=>15.5),
@@ -102,6 +104,51 @@ As you see, you do not need to setup the whole KoolReport class and the view in 
     </body>
 </html>
 ```
+
+## Report Settings
+
+```
+<?php
+Widget::create(Table::class,array(
+    "dataSource"=>array(
+        array("name"=>"Peter","age"=>35),
+        array("name"=>"Karl","age"=>32),        
+    )
+),array(
+    "assets"=>array(
+        "path"=>"../../assets"
+        "url"=>"/assets",
+    )
+)
+?>
+```
+
+The third parameter of `create` function is optional settings for report. There you can set the custom `assets` folder like above. This `assets` settings is necessary if browser can not access to the folder containing resources of Widget. By specifying the `path` and `url`, we let KoolReport know where to put Widget's resources and how to access those resources.
+
+## Exporter
+
+`Exporter` helps you to ulilize the `Export` package (if you have) to export any HTML or PHP code file to PDF and other formats.
+
+```
+Exporter::export("/full/path/to/your/file.php")
+->pdf(array(
+    "format"=>"A4",
+    "orientation"=>"portrait"
+))
+->toBrowser("myfile.pdf");
+```
+
+or you can save file
+
+```
+Exporter::export("/full/path/to/your/file.php")
+->pdf(array(
+    "format"=>"A4",
+    "orientation"=>"portrait"
+))
+->saveAs("myfile.pdf");
+```
+
 
 ## Support
 
