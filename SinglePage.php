@@ -74,7 +74,7 @@ trait SinglePage
             function () {
                 $this->getResourceManager()->addScriptFileOnBegin(
                     $this->getResourceManager()->publishAssetFolder(
-                        realpath(dirname(__FILE__) . "/../../src/clients/core")
+                        realpath(dirname(__FILE__) . "/../core/src/clients/core")
                     ) . "/KoolReport.js"
                 );
             },

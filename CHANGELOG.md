@@ -1,5 +1,9 @@
 # Change Log
 
+## Version 3.6.0 (new version)
+
+1. SinglePage: Fix the path to client core
+
 ## Version 3.5.0
 
 1. `SinglePage`: Fix issue with loading widget by registering the KoolReport.js
