@@ -1,6 +1,6 @@
 # Change Log
 
-## Version 3.6.0 (new version)
+## Version 3.6.0
 
 1. SinglePage: Fix the path to client core
 
